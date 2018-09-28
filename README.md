@@ -21,10 +21,10 @@ http://localhost
 ## API Methods
 
 
-|  URL               | Method |  Function                              |
-| ------------------ | ------ | -------------------------------------- |
-| api/planet         |  GET   | List all planets                       |
-| api/planet/<id>    |  GET   | Show planet information get by Id      |
-| api/planet/<name>  |  GET   | Show planet information get by Name    |
-| api/planet/        |  POST  | Create new Planet                      |
-| api/planet/<id>    | DELETE | Delete Planet by Id                    |
+|  URL                        | Method |  Function                              |
+| --------------------------- | ------ | -------------------------------------- |
+| api/planet                  |  GET   | List all planets                       |
+| api/planet/{id}             |  GET   | Show planet information get by Id      |
+| api/planet/?search={name}   |  GET   | Show planet information get by Name    |
+| api/planet/                 |  POST  | Create new Planet                      |
+| api/planet/{id}             | DELETE | Delete Planet by Id                    |

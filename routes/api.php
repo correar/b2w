@@ -19,7 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 Route::get('/planets', 'PlanetsController@index');
-Route::get('/planets/<id>');
-Route::get('/planets/?search=<name>');
+Route::get('/planets/{id}', 'PlanetsController@show');
 Route::post('/planets', 'PlanetsController@store');
-Route::delete('/planets/<id>');
+Route::delete('/planets/{id}', 'PlanetsController@destroy');

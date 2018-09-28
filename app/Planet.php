@@ -8,4 +8,5 @@ use Moloquent;
 class Planet extends Moloquent
 {
     protected $fillable = ['name', 'climate', 'terrain'];
+    
 }
