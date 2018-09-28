@@ -5,15 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Planet;
 use App\Http\Resources\Planets as PlanetsResource;
+use GuzzleHttp\Client;
 
 class PlanetsController extends Controller
 {
     public function index(Request $request)
     {
         if($request->search){
-            $planet = Planet::where('name','like', '%'.$request->search.'%')->get();
-            //return response()->json($planet,200);
-            return ["data" => $planet];
+            $planets = Planet::where('name','like', '%'.$request->search.'%')->get();
+            foreach($planets as $planet){
+                $http = new Client;
+                $swapi = $http->get('https://swapi.co/api/planets/?search='.$planet->name);
+                $response = json_decode((string) $swapi->getBody(), true);
+                $results = $response['results'];
+                foreach ($results as $result){
+                    foreach ($result as $key=>$value){
+                        if($key == 'films'){
+                    
+                            $planet->films = count($value);
+                        }
+                    }
+                }
+            }
+            if($planets->count()>0){
+                return ["data" => $planets];
+            } else {
+                return ["message" => "Maybe Death Star already destroyed this planet"];
+            }
         }
         return new PlanetsResource(Planet::paginate(15));
         
