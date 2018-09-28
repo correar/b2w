@@ -4,13 +4,18 @@
 
 * Laravel
 * Mongodb
-* Docker
+* [Docker](https://docs.docker.com/install/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
+* [Ambientum](https://github.com/codecasts/ambientum/)
+
+First of all, you need install docker, docker compose and ambientum.
 
 Clone Project and use docker compose command
 ```
 
 docker-compose up
 ```
+
 ## Access Software
 
 ```
