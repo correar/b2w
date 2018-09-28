@@ -1,0 +1,43 @@
+####
+# ATENTION:
+# Replace all occurences of apisw with your project's name
+####
+
+# v2 syntax
+version: '3'
+
+# Named volumes
+volumes:
+  # Mongodb Data
+  mongo:
+    driver: local
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: apisw
+      MONGO_INITDB_ROOT_PASSWORD: apisw
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: apisw
+      ME_CONFIG_MONGODB_ADMINPASSWORD: apisw
+
+  # PHP (with Nginx)
+  # you can change from nginx to apache, just change session 'image'
+  app:
+    image: ambientum/php:7.2-nginx
+    container_name: apisw-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+    links:
+      - mongo
+      
